@@ -1,0 +1,11 @@
+server:
+  servlet:
+    context-path: /petadopt
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useSSL=false
+    username: root
+    password: 1223
+  freemarker:
+    request-context-attribute: request
