@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="${request.contextPath}/css/common.css">
 </head>
 <body>
-<#--<#include "css/left_menu.ftl"/>-->
+<#-- 引入头部菜单 -->
+<#include "common/header_menu.ftl"/>
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <#-- 引入头部菜单 -->
-            <#include "common/header_menu.ftl"/>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-2 padding-0">
-            <#-- 引入左侧菜单栏 -->
+        <#-- 引入左侧菜单栏 -->
             <#include "common/left_menu.ftl"/>
+        </div>
+        <div class="col-10 page-wrapper">
+            a
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            b
         </div>
     </div>
 </div>
