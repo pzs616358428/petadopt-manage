@@ -10,3 +10,9 @@ spring:
     password: 1223
   freemarker:
     request-context-attribute: request
+  # 关闭静态资源缓存
+  resources:
+    chain:
+      cache: false
+  jpa:
+    show-sql: true

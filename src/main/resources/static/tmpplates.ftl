@@ -2,7 +2,7 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
-    <title>宠物领养网管理端</title>
+    <title>模板页面</title>
     <link rel="stylesheet" href="${request.contextPath}/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="${request.contextPath}/css/common.css">
 </head>

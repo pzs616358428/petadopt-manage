@@ -16,8 +16,9 @@
                    aria-haspopup="true" aria-expanded="false">
                     admin
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="javascript:;">退出</a>
+                <div class="dropdown-menu dropdown-menu-right md-0" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="javascript:;">设置</a>
+                    <a class="dropdown-item" href="javascript:;">退出登陆</a>
                 </div>
             </li>
         </ul>

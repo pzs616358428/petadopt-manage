@@ -8,3 +8,7 @@
     height: 94vh;
     overflow: auto;
 }
+
+.md-0 {
+    min-width: 0;
+}
