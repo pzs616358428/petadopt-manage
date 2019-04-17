@@ -2,6 +2,7 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>宠物领养网管理端</title>
     <link rel="stylesheet" href="${request.contextPath}/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="${request.contextPath}/css/common.css">
@@ -12,7 +13,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-2 padding-0">
-        <#-- 引入左侧菜单栏 -->
+            <#-- 引入左侧菜单栏 -->
             <#include "common/left_menu.ftl"/>
         </div>
         <div class="col-10 page-wrapper"></div>

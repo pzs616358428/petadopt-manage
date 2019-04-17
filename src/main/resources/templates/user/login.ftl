@@ -2,54 +2,77 @@
 <html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>登录</title>
     <link rel="stylesheet" href="${request.contextPath}/bootstrap4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${request.contextPath}/css/common.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .wrapper {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            width: 330px;
+            padding: 15px;
+        }
+
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form-signin input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <form>
-        <div class="form-group">
-            <label for="username">用户名</label>
-            <input type="text" class="form-control" id="username" placeholder="用户名" name="username">
-            <div class="alert alert-danger" role="alert" id="username-alert">请输入用户名</div>
+<div class="text-center wrapper">
+    <form class="form-signin">
+        <img src="${request.contextPath}/image/bootstrap-solid.svg" class="mb-4" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+        <label for="username" class="sr-only">用户名</label>
+        <input type="text" id="username" class="form-control" placeholder="用户名" required autofocus>
+        <label for="password" class="sr-only">密码</label>
+        <input type="password" id="password" class="form-control" placeholder="密码" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me">
+                记住我
+            </label>
         </div>
-        <div class="form-group">
-            <label for="password">密码</label>
-            <input type="password" class="form-control" id="password" placeholder="密码" name="password">
-            <div class="alert alert-danger" role="alert" id="password-alert">请输入密码</div>
-        </div>
-        <button type="button" class="btn btn-primary" id="login">登录</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block">登录</button>
+        <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
     </form>
 </div>
 
 <script type="text/javascript" src="${request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${request.contextPath}/bootstrap4/js/bootstrap.min.js"></script>
 <script>
-    $(function () {
-        // 页面加载后隐藏两个警告框
-        $("#username-alert").hide();
-        $("#password-alert").hide();
 
-        $("#login").click(function () {
-            // 获取用户名
-            let username = $("#username").val();
-            // 获取密码
-            let password = $("#password").val();
-            if (username && password) {
-                // 登录前隐藏两个提示框
-                $("#username-alert").hide();
-                $("#password-alert").hide();
-            } else {
-                if (!username) {
-                    $("#username-alert").show();
-                }
-                if (!password) {
-                    $("#password-alert").show();
-                }
-            }
-        });
-    });
 </script>
 </body>
 </html>

@@ -16,7 +16,7 @@
         </ul>
     </div>
     <div class="card">
-        <div class="card-header bg-dark" id="heading-two">
+        <div class="card-header bg-dark rounded-0" id="heading-two">
             <a href="#collapse-two" class="btn btn-dark btn-block text-left" data-toggle="collapse" aria-expanded="true"
                aria-controls="collapse-two">
                 用户管理

@@ -1,14 +1,15 @@
 /* 去掉内边距 */
 .padding-0 {
     padding: 0;
-    color: red;
+}
+
+/* 重置min-width为0 */
+.md-0 {
+    min-width: 0;
 }
 
 .page-wrapper {
     height: 94vh;
     overflow: auto;
-}
-
-.md-0 {
-    min-width: 0;
+    background-color: #f1f2f7;
 }

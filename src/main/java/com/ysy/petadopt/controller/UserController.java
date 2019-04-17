@@ -1,6 +1,5 @@
 package com.ysy.petadopt.controller;
 
-import com.ysy.petadopt.entity.User;
 import com.ysy.petadopt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
