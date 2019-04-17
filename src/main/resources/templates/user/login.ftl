@@ -51,20 +51,20 @@
 </head>
 <body>
 <div class="text-center wrapper">
-    <form class="form-signin">
+    <form id="login-from" class="form-signin">
         <img src="${request.contextPath}/image/bootstrap-solid.svg" class="mb-4" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
         <label for="username" class="sr-only">用户名</label>
-        <input type="text" id="username" class="form-control" placeholder="用户名" required autofocus>
+        <input type="text" id="username" class="form-control" placeholder="用户名" name="username" autofocus>
         <label for="password" class="sr-only">密码</label>
-        <input type="password" id="password" class="form-control" placeholder="密码" required>
+        <input type="password" id="password" class="form-control" placeholder="密码" name="password">
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" value="remember-me">
+                <input type="checkbox" name="remember" value="remember">
                 记住我
             </label>
         </div>
-        <button type="button" class="btn btn-lg btn-primary btn-block">登录</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" id="login">登录</button>
         <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
     </form>
 </div>
@@ -72,7 +72,31 @@
 <script type="text/javascript" src="${request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${request.contextPath}/bootstrap4/js/bootstrap.min.js"></script>
 <script>
-
+    $(function () {
+        $('#login').click(function () {
+            let username = $('#username').val();
+            let password = $('#password').val();
+            if (username && password) {
+                $.ajax({
+                    type: 'post',
+                    url: 'login',
+                    data: $('#login-from').serialize(),
+                    success: function (data) {
+                        if (data.status === 0) {
+                            location.href = '${request.contextPath}/admin/index';
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function () {
+                        alert('服务器很忙');
+                    }
+                });
+            } else {
+                alert('请填写用户名和密码');
+            }
+        });
+    });
 </script>
 </body>
 </html>
