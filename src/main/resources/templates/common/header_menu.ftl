@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="${request.contextPath}/admin/index">宠物领养网</a>
+    <a class="navbar-brand" href="${springMacroRequestContext.contextPath}/admin/index">宠物领养网</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    admin
+                    ${Session.userInfo.username}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right md-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="javascript:;">设置</a>

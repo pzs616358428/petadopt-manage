@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>登录</title>
-    <link rel="stylesheet" href="${request.contextPath}/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${springMacroRequestContext.contextPath}/bootstrap4/css/bootstrap.min.css">
     <style>
         html, body {
             height: 100%;
@@ -52,7 +52,7 @@
 <body>
 <div class="text-center wrapper">
     <form id="login-from" class="form-signin">
-        <img src="${request.contextPath}/image/bootstrap-solid.svg" class="mb-4" width="72" height="72">
+        <img src="${springMacroRequestContext.contextPath}/image/bootstrap-solid.svg" class="mb-4" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
         <label for="username" class="sr-only">用户名</label>
         <input type="text" id="username" class="form-control" placeholder="用户名" name="username" autofocus>
@@ -69,8 +69,8 @@
     </form>
 </div>
 
-<script type="text/javascript" src="${request.contextPath}/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="${request.contextPath}/bootstrap4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/bootstrap4/js/bootstrap.min.js"></script>
 <script>
     $(function () {
         $('#login').click(function () {
@@ -83,7 +83,7 @@
                     data: $('#login-from').serialize(),
                     success: function (data) {
                         if (data.status === 0) {
-                            location.href = '${request.contextPath}/admin/index';
+                            location.href = '${springMacroRequestContext.contextPath}/admin/index';
                         } else {
                             alert(data.message);
                         }

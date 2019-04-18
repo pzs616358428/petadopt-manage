@@ -8,8 +8,6 @@ spring:
     url: jdbc:mysql://localhost:3306/petadopt?useSSL=false
     username: root
     password: 1223
-  freemarker:
-    request-context-attribute: request
   # 关闭静态资源缓存
   resources:
     chain:
