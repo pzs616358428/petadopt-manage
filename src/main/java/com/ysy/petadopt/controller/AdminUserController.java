@@ -42,17 +42,17 @@ public class AdminUserController {
             return ResultVOUtils.error(2, "密码不正确");
         } else {
             // 登录成功将用户信息保存到session中
-            httpSession.setAttribute("userInfo", userData);
+            httpSession.setAttribute("user", userData);
             // 如果remember为null则不免登陆
             if (remember == null) {
                 // 清除其他用户存的cookie
-                Cookie cookie = new Cookie("userInfo", null);
+                Cookie cookie = new Cookie("user", null);
                 cookie.setMaxAge(0);
                 cookie.setPath(contextPath + "/admin");
                 response.addCookie(cookie);
             } else {
                 // 使用cookie保存用户信息实现免登陆
-                Cookie cookie = new Cookie("userInfo", userData.getUsername());
+                Cookie cookie = new Cookie("user", userData.getUsername());
                 cookie.setPath(contextPath + "/admin");
                 // 设置cookie保存时间为十五天
                 cookie.setMaxAge(60 * 60 * 24 * 15);
@@ -65,9 +65,9 @@ public class AdminUserController {
     @GetMapping("logout")
     public String logout(HttpServletResponse response, HttpSession httpSession) {
         // 清除session中的用户信息
-        httpSession.removeAttribute("userInfo");
+        httpSession.removeAttribute("user");
         // 清除cookie中的用户信息
-        Cookie cookie = new Cookie("userInfo", null);
+        Cookie cookie = new Cookie("user", null);
         cookie.setMaxAge(0);
         cookie.setPath(contextPath + "/admin");
         response.addCookie(cookie);

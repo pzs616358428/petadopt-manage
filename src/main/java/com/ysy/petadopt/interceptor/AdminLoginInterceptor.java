@@ -29,12 +29,12 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         HttpSession httpSession = request.getSession();
-        User user = (User) httpSession.getAttribute("userInfo");
+        User user = (User) httpSession.getAttribute("user");
         // 如果user为null说明session中没有用户信息
         if (user == null) {
             // 查询cookie中的userInfo
             Map<String, String> cookieMap = CookiesToMapConvert.convert(request.getCookies());
-            String username = cookieMap.get("userInfo");
+            String username = cookieMap.get("user");
             // 如果cookie中也没有登录信息说明未免登陆
             if (username == null) {
                 response.sendRedirect(contextPath + "/admin/user/loginPage");
@@ -47,7 +47,7 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
                     return false;
                 } else {
                     // 如果cookie存在user信息则存入到session中
-                    httpSession.setAttribute("userInfo", userData);
+                    httpSession.setAttribute("user", userData);
                     return true;
                 }
             }
