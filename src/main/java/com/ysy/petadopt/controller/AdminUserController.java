@@ -62,4 +62,17 @@ public class AdminUserController {
         }
     }
 
+    @GetMapping("logout")
+    public String logout(HttpServletResponse response, HttpSession httpSession) {
+        // 清除session中的用户信息
+        httpSession.removeAttribute("userInfo");
+        // 清除cookie中的用户信息
+        Cookie cookie = new Cookie("userInfo", null);
+        cookie.setMaxAge(0);
+        cookie.setPath(contextPath + "/admin");
+        response.addCookie(cookie);
+        // 回到登录页
+        return "redirect:/admin/user/loginPage";
+    }
+
 }
