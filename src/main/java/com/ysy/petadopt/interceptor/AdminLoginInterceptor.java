@@ -4,6 +4,7 @@ import com.ysy.petadopt.entity.User;
 import com.ysy.petadopt.service.UserService;
 import com.ysy.petadopt.utils.CookiesToMapConvert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -19,6 +20,9 @@ import java.util.Map;
 @Component
 public class AdminLoginInterceptor implements HandlerInterceptor {
 
+    @Value("${server.servlet.context-path}")
+    private String contextPath;
+
     @Autowired
     private UserService userService;
 
@@ -33,13 +37,13 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
             String username = cookieMap.get("userInfo");
             // 如果cookie中也没有登录信息说明未免登陆
             if (username == null) {
-                response.sendRedirect(request.getServletContext().getContextPath() + "/admin/user/loginPage");
+                response.sendRedirect(contextPath + "/admin/user/loginPage");
                 return false;
             } else {
                 User userData = userService.findByUsername(username);
                 // 有用户修改了cookie或者用户被删除了
                 if (userData == null) {
-                    response.sendRedirect(request.getServletContext().getContextPath() + "/admin/user/loginPage");
+                    response.sendRedirect(contextPath + "/admin/user/loginPage");
                     return false;
                 } else {
                     // 如果cookie存在user信息则存入到session中

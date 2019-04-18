@@ -18,7 +18,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right md-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="javascript:;">设置</a>
-                    <a class="dropdown-item" href="javascript:;">退出登陆</a>
+                    <a class="dropdown-item" href="javascript:;">退出</a>
                 </div>
             </li>
         </ul>
