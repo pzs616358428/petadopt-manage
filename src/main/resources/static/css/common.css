@@ -10,6 +10,7 @@
 
 .page-wrapper {
     height: 94vh;
+    padding: 30px;
     overflow: auto;
     background-color: #f1f2f7;
 }

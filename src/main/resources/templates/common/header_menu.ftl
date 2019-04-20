@@ -15,13 +15,13 @@
                 <a class="nav-link dropdown-toggle pt-0 pb-0 ml-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <#if Session.user.userInfo.headportrait?? && Session.user.userInfo.headportrait != "">
-                        <img src="${springMacroRequestContext.contextPath}/${Session.user.userInfo.headportrait}" width="36" height="36" class="rounded-circle">
+                        <img src="${Session.user.userInfo.headportrait}" width="36" height="36" class="rounded-circle">
                         <#else >
                         <img src="${springMacroRequestContext.contextPath}/image/default-head.png" width="36" height="36" class="rounded-circle">
                     </#if>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right md-0" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="javascript:;">设置</a>
+                    <a class="dropdown-item" href="javascript:;">个人中心</a>
                     <a class="dropdown-item" href="${springMacroRequestContext.contextPath}/admin/user/logout">退出</a>
                 </div>
             </li>
