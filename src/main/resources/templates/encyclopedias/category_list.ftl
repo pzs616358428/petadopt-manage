@@ -44,6 +44,34 @@
                 </#list>
                 </tbody>
             </table>
+
+            <#-- 添加按钮,开启模态框 -->
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#add-category-model">添加</button>
+
+            <#-- 添加类别的模态框 -->
+            <div class="modal fade" id="add-category-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">添加类别</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="category-name" placeholder="类别名">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary add-category">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -61,6 +89,29 @@
             let categoryId = $(this).attr("categoryid");
             // 发送删除请求
             location.href = "${springMacroRequestContext.contextPath}/admin/encyclopedias/deleteCategory?categoryId=" + categoryId;
+        });
+        // 添加模态框保存按钮的点击事件
+        $(".add-category").click(function () {
+            let categoryName = $("#category-name").val();
+            if (categoryName) {
+                $.ajax({
+                    type: 'post',
+                    url: 'addCategory',
+                    data: 'categoryName=' + categoryName,
+                    success: function (data) {
+                        if (data.status === 0) {
+                            location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function () {
+                        alert("服务器很忙");
+                    }
+                });
+            } else {
+                alert("类别名不能为空");
+            }
         });
     });
 </script>

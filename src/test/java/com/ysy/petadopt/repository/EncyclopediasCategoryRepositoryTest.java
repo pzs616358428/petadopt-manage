@@ -26,4 +26,9 @@ public class EncyclopediasCategoryRepositoryTest {
         }
     }
 
+    @Test
+    public void findByCategoryNameTest() {
+        System.out.println(encyclopediasCategoryRepository.findByCategoryName("aaa"));
+    }
+
 }

@@ -24,4 +24,14 @@ public class EncyclopediasCategoryServiceImpl implements EncyclopediasCategorySe
         encyclopediasCategoryRepository.deleteById(categoryId);
     }
 
+    @Override
+    public EncyclopediasCategory findByCategoryName(String categoryName) {
+        return encyclopediasCategoryRepository.findByCategoryName(categoryName);
+    }
+
+    @Override
+    public EncyclopediasCategory save(EncyclopediasCategory encyclopediasCategory) {
+        return encyclopediasCategoryRepository.save(encyclopediasCategory);
+    }
+
 }

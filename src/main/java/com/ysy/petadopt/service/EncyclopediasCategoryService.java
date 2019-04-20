@@ -18,4 +18,18 @@ public interface EncyclopediasCategoryService {
      */
     void deleteById(Integer categoryId);
 
+    /**
+     * 根据类别名查询类别
+     * @param categoryName
+     * @return
+     */
+    EncyclopediasCategory findByCategoryName(String categoryName);
+
+    /**
+     * 保存和修改类别
+     * @param encyclopediasCategory
+     * @return 添加后的数据
+     */
+    EncyclopediasCategory save(EncyclopediasCategory encyclopediasCategory);
+
 }

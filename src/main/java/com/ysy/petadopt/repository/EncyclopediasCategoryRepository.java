@@ -4,4 +4,7 @@ import com.ysy.petadopt.entity.EncyclopediasCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EncyclopediasCategoryRepository extends JpaRepository<EncyclopediasCategory, Integer> {
+
+    EncyclopediasCategory findByCategoryName(String categoryName);
+
 }
