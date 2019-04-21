@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>百科管理</title>
+    <title>动物类别管理</title>
     <link rel="stylesheet" href="${springMacroRequestContext.contextPath}/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="${springMacroRequestContext.contextPath}/css/common.css">
 </head>
@@ -37,23 +37,27 @@
                     <td>${category_index + 1}</td>
                     <td>${category.categoryName}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">修改</button>
-                        <button type="button" class="btn btn-danger btn-sm delete" categoryid="${category.categoryId}">删除</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="alert('功能未开放')">修改</button>
+                        <button type="button" class="btn btn-danger btn-sm delete"
+                                data-animal-category-id="${category.animalCategoryId}">删除
+                        </button>
                     </td>
                 </tr>
                 </#list>
                 </tbody>
             </table>
 
-            <#-- 添加按钮,开启模态框 -->
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#add-category-model">添加</button>
+        <#-- 添加按钮,开启模态框 -->
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#add-category-model">
+                添加
+            </button>
 
-            <#-- 添加类别的模态框 -->
-            <div class="modal fade" id="add-category-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <#-- 添加类别的模态框 -->
+            <div class="modal fade" id="add-category-model" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">添加类别</h5>
+                            <h5 class="modal-title">添加动物类别</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -81,22 +85,23 @@
 <script>
     $(function () {
         // 全选全不选功能
-        $(".check-all").click(function () {
-            $(".check-item").prop("checked", $(this).prop("checked"));
+        $('.check-all').click(function () {
+            $('.check-item').prop('checked', $(this).prop('checked'));
         });
         // 删除按钮的点击事件
-        $(".delete").click(function () {
-            let categoryId = $(this).attr("categoryid");
-            // 发送删除请求
-            location.href = "${springMacroRequestContext.contextPath}/admin/encyclopedias/deleteCategory?categoryId=" + categoryId;
+        $('.delete').click(function () {
+            if (confirm('是否删除')) {
+                let animalCategoryId = $(this).data('animalCategoryId');
+                location.href = '${springMacroRequestContext.contextPath}/admin/article/deleteAnimalCategory?animalCategoryId=' + animalCategoryId;
+            }
         });
         // 添加模态框保存按钮的点击事件
-        $(".add-category").click(function () {
-            let categoryName = $("#category-name").val();
+        $('.add-category').click(function () {
+            let categoryName = $('#category-name').val();
             if (categoryName) {
                 $.ajax({
                     type: 'post',
-                    url: 'addCategory',
+                    url: 'addAnimalCategory',
                     data: 'categoryName=' + categoryName,
                     success: function (data) {
                         if (data.status === 0) {
@@ -106,11 +111,11 @@
                         }
                     },
                     error: function () {
-                        alert("服务器很忙");
+                        alert('服务器很忙');
                     }
                 });
             } else {
-                alert("类别名不能为空");
+                alert('类别名不能为空');
             }
         });
     });

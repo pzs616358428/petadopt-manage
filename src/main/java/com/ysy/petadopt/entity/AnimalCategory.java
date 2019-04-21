@@ -8,12 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
-@Entity(name = "p_encyclopedias_category")
-public class EncyclopediasCategory {
+@Entity(name = "p_animal_category")
+public class AnimalCategory {
 
+    /* 类别id */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categoryId;
+    private Integer animalCategoryId;
+
+    /* 类别名 */
     private String categoryName;
 
 }
