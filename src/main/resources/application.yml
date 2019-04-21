@@ -14,3 +14,12 @@ spring:
       cache: false
   jpa:
     show-sql: true
+qiniu:
+  # 七牛密钥
+  AccessKey: ZUrxyQqwJSRycRBHJmvVcp-wmPE6uXMy22re-r7P
+  SecretKey: sa1B4eRn5abOboyPFkv50TzTDfGDzw5zXUUevGjf
+  # 七牛空间名
+  Bucket: petadopt
+  # 外链访问路径
+  cdn:
+    prefix: pq55ce8xx.bkt.clouddn.com

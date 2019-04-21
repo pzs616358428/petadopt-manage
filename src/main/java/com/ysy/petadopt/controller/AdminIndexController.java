@@ -10,6 +10,7 @@ public class AdminIndexController {
 
     /**
      * 访问首页
+     *
      * @return 首页地址
      */
     @GetMapping("index")
