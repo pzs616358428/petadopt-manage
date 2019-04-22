@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.ysy</groupId>
     <artifactId>petadopt</artifactId>
+    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>petadopt</name>
     <description>Demo project for Spring Boot</description>
@@ -58,6 +59,26 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>[7.2.0, 7.2.99]</version>
         </dependency>
+
+        <!--<dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>com.gitee.qdbp.thirdparty</groupId>
+            <artifactId>ueditor</artifactId>
+            <version>1.4.3.3</version>
+        </dependency>-->
     </dependencies>
 
     <build>

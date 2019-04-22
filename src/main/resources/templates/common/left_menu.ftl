@@ -8,7 +8,7 @@
         </div>
         <ul id="collapse-one" class="collapse show list-group" aria-labelledby="heading-one" data-parent="#accordion">
             <li class="list-group-item">
-                <a href="${springMacroRequestContext.contextPath}/admin/encyclopedias/list" class="btn btn-link">文章管理</a>
+                <a href="${springMacroRequestContext.contextPath}/admin/article/articleList" class="btn btn-link">文章管理</a>
             </li>
             <li class="list-group-item">
                 <a href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList" class="btn btn-link">动物类别管理</a>
