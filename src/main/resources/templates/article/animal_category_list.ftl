@@ -29,10 +29,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list page.content as category>
+                <#list page.getContent() as category>
                 <tr>
                     <td>
-                        <input type="checkbox" class="check-item">
+                        <input type="checkbox" class="check-item" data-animal-category-id="${category.animalCategoryId}">
                     </td>
                     <td>${category_index + 1}</td>
                     <td>${category.categoryName}</td>
@@ -47,10 +47,66 @@
                 </tbody>
             </table>
 
-        <#-- 添加按钮,开启模态框 -->
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#add-category-model">
-                添加
-            </button>
+            <div class="container-fluid padding-0 d-flex justify-content-between">
+                <div class="button-wrapper">
+                <#-- 添加按钮,开启模态框 -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#add-category-model">
+                        添加
+                    </button>
+                <#-- 批量删除按钮 -->
+                    <button type="button" class="btn btn-danger delete-checked">删除所选</button>
+                </div>
+            <#-- 分页按钮 -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mb-0">
+                        <#if page.hasPrevious()>
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList?pageNum=${page.previousPageable().getPageNumber() + 1}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <#else>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:;" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        </#if>
+
+                        <#list navigationNums as num>
+                            <#if num == page.getNumber() + 1>
+                                <li class="page-item active"><a class="page-link" href="javascript:;">${num}</a></li>
+                            <#else>
+                                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList?pageNum=${num}">${num}</a></li>
+                            </#if>
+                        </#list>
+
+                        <#if page.hasNext()>
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList?pageNum=${page.nextPageable().getPageNumber() + 1}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <#else>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:;" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        </#if>
+
+                    </ul>
+                </nav>
+            </div>
 
         <#-- 添加类别的模态框 -->
             <div class="modal fade" id="add-category-model" tabindex="-1" role="dialog" aria-hidden="true">
@@ -88,6 +144,7 @@
         $('.check-all').click(function () {
             $('.check-item').prop('checked', $(this).prop('checked'));
         });
+
         // 删除按钮的点击事件
         $('.delete').click(function () {
             if (confirm('是否删除')) {
@@ -95,6 +152,22 @@
                 location.href = '${springMacroRequestContext.contextPath}/admin/article/deleteAnimalCategory?animalCategoryId=' + animalCategoryId;
             }
         });
+
+        // 删除所选按钮点击事件
+        $(".delete-checked").click(function () {
+            let animalCategoryIds = new Array();
+            $(".check-item").each(function (index, item) {
+                // 注意,遍历出来的item为js原生节点对象
+                if ($(item).prop("checked")) {
+                    animalCategoryIds.push($(item).data('animalCategoryId'));
+                }
+            });
+            // 判断数组长度
+            if (animalCategoryIds.length) {
+                location.href = "${springMacroRequestContext.contextPath}/admin/article/deleteAnimalCategorys?animalCategoryIds=" + animalCategoryIds;
+            }
+        });
+
         // 添加模态框保存按钮的点击事件
         $('.add-category').click(function () {
             let categoryName = $('#category-name').val();

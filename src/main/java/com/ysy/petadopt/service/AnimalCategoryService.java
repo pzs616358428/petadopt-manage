@@ -4,6 +4,8 @@ import com.ysy.petadopt.entity.AnimalCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface AnimalCategoryService {
 
     /**
@@ -27,10 +29,16 @@ public interface AnimalCategoryService {
     void deleteById(Integer animalCategoryId);
 
     /**
-     * 添加动物类别
+     * 添加或者修改动物类别
      * @param animalCategory
-     * @return 添加后的数据
+     * @return 修改后的数据
      */
     AnimalCategory save(AnimalCategory animalCategory);
+
+    /**
+     * 根据animalCategoryIds集合删除动物类别
+     * @param animalCategoryIds
+     */
+    void deleteByAnimalCategoryIds(List<Integer> animalCategoryIds);
 
 }

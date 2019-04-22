@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /petadopt
+  port: 8888
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/petadopt?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 1223
+  # 关闭静态资源缓存
+  resources:
+    chain:
+      cache: false
+  jpa:
+    show-sql: true
+qiniu:
+  # 七牛密钥
+  AccessKey: ZUrxyQqwJSRycRBHJmvVcp-wmPE6uXMy22re-r7P
+  SecretKey: sa1B4eRn5abOboyPFkv50TzTDfGDzw5zXUUevGjf
+  # 七牛空间名
+  Bucket: petadopt
+  # 外链访问路径
+  cdn:
+    prefix: pq55ce8xx.bkt.clouddn.com

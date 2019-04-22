@@ -2,7 +2,7 @@ package com.ysy.petadopt.interceptor;
 
 import com.ysy.petadopt.entity.User;
 import com.ysy.petadopt.service.UserService;
-import com.ysy.petadopt.utils.CookiesToMapConvert;
+import com.ysy.petadopt.convert.CookiesToMapConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
