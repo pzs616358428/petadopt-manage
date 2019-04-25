@@ -32,7 +32,8 @@
                 <#list page.getContent() as category>
                 <tr>
                     <td>
-                        <input type="checkbox" class="check-item" data-animal-category-id="${category.animalCategoryId}">
+                        <input type="checkbox" class="check-item"
+                               data-animal-category-id="${category.animalCategoryId}">
                     </td>
                     <td>${category_index + 1}</td>
                     <td>${category.categoryName}</td>
@@ -82,7 +83,9 @@
                             <#if num == page.getNumber() + 1>
                                 <li class="page-item active"><a class="page-link" href="javascript:;">${num}</a></li>
                             <#else>
-                                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList?pageNum=${num}">${num}</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList?pageNum=${num}">${num}</a>
+                                </li>
                             </#if>
                         </#list>
 
@@ -147,7 +150,7 @@
 
         // 删除按钮的点击事件
         $('.delete').click(function () {
-            if (confirm('是否删除')) {
+            if (confirm('确定删除吗？删除类别之后所属文章也将被删除')) {
                 let animalCategoryId = $(this).data('animalCategoryId');
                 location.href = '${springMacroRequestContext.contextPath}/admin/article/deleteAnimalCategory?animalCategoryId=' + animalCategoryId;
             }
@@ -163,7 +166,7 @@
                 }
             });
             // 判断数组长度
-            if (animalCategoryIds.length) {
+            if (animalCategoryIds.length && confirm('确定删除吗？删除类别之后所属文章也将被删除')) {
                 location.href = "${springMacroRequestContext.contextPath}/admin/article/deleteAnimalCategorys?animalCategoryIds=" + animalCategoryIds;
             }
         });

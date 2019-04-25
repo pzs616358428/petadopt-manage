@@ -2,6 +2,7 @@ package com.ysy.petadopt.service.impl;
 
 import com.ysy.petadopt.entity.AnimalCategory;
 import com.ysy.petadopt.repository.AnimalCategoryRepository;
+import com.ysy.petadopt.repository.ArticleRepository;
 import com.ysy.petadopt.service.AnimalCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,9 @@ public class AnimalCategoryServiceImpl implements AnimalCategoryService {
     @Autowired
     private AnimalCategoryRepository animalCategoryRepository;
 
+    @Autowired
+    private ArticleRepository articleRepository;
+
     @Override
     public Page<AnimalCategory> findAll(Pageable pageable) {
         return animalCategoryRepository.findAll(pageable);
@@ -28,8 +32,12 @@ public class AnimalCategoryServiceImpl implements AnimalCategoryService {
         return animalCategoryRepository.findByCategoryName(categoryName);
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer animalCategoryId) {
+        // 先根据宠物类别id删除文章
+        articleRepository.deleteByAnimalCategoryId(animalCategoryId);
+        // 再删除宠物类别
         animalCategoryRepository.deleteById(animalCategoryId);
     }
 
@@ -41,6 +49,9 @@ public class AnimalCategoryServiceImpl implements AnimalCategoryService {
     @Transactional
     @Override
     public void deleteByAnimalCategoryIds(List<Integer> animalCategoryIds) {
+        // 先根据宠物类别id列表删除文章
+        articleRepository.deleteByAnimalCategoryIds(animalCategoryIds);
+        // 再删除宠物类别
         List<AnimalCategory> animalCategoryList = new ArrayList<>();
         for (Integer animalCategoryId : animalCategoryIds) {
             AnimalCategory animalCategory = new AnimalCategory();

@@ -11,7 +11,7 @@
                 <a href="${springMacroRequestContext.contextPath}/admin/article/articleList" class="btn btn-link">文章管理</a>
             </li>
             <li class="list-group-item">
-                <a href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList" class="btn btn-link">动物类别管理</a>
+                <a href="${springMacroRequestContext.contextPath}/admin/article/animalCategoryList" class="btn btn-link">宠物类别管理</a>
             </li>
             <li class="list-group-item">
                 <a href="${springMacroRequestContext.contextPath}/admin/article/articleCategoryList" class="btn btn-link">文章类别管理</a>

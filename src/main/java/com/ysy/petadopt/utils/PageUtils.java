@@ -2,6 +2,9 @@ package com.ysy.petadopt.utils;
 
 import org.springframework.data.domain.Page;
 
+/**
+ * 分页工具类
+ */
 public class PageUtils {
 
     public static int[] getNavigationNums(Page page) {
