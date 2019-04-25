@@ -3,7 +3,7 @@
         <div class="card-header bg-dark" id="heading-one">
             <a href="#collapse-one" class="btn btn-dark btn-block text-left" data-toggle="collapse" aria-expanded="true"
                aria-controls="collapse-one">
-                百科管理
+                知识百科管理
             </a>
         </div>
         <ul id="collapse-one" class="collapse show list-group" aria-labelledby="heading-one" data-parent="#accordion">

@@ -63,4 +63,19 @@ public class AdminAnimalCategoryController {
         }
     }
 
+    @PostMapping("updateAnimalCategory")
+    @ResponseBody
+    public ResultVO updateAnimalCategory(Integer animalCategoryId, String categoryName) {
+        AnimalCategory animalCategory = animalCategoryService.findByCategoryName(categoryName);
+        if (animalCategory == null) {
+            animalCategory = new AnimalCategory();
+            animalCategory.setAnimalCategoryId(animalCategoryId);
+            animalCategory.setCategoryName(categoryName);
+            animalCategory = animalCategoryService.save(animalCategory);
+            return ResultVOUtils.success(animalCategory);
+        } else {
+            return ResultVOUtils.error(1, "类别已存在");
+        }
+    }
+
 }
