@@ -13,4 +13,11 @@ public interface ArticleService {
      */
     Page<Article> findAll(Pageable pageable);
 
+    /**
+     * 添加文章
+     * @param article
+     * @return 添加后的数据
+     */
+    Article save(Article article);
+
 }

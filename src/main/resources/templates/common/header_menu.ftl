@@ -6,7 +6,7 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" action="javascript:;">
             <input class="form-control mr-sm-2" type="search" placeholder="请输入搜索内容" aria-label="Search">
             <button class="btn btn-info my-2 my-sm-0" type="submit">搜索</button>
         </form>

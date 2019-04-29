@@ -16,4 +16,4 @@ qiniu:
   Bucket: petadopt
   # 外链访问路径
   cdn:
-    prefix: pq55ce8xx.bkt.clouddn.com
+    prefix: http://pq55ce8xx.bkt.clouddn.com

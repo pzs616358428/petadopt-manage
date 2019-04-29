@@ -10,8 +10,6 @@
         .table td {
             vertical-align: middle;
         }
-        .modal {
-        }
     </style>
 </head>
 <body>
@@ -90,7 +88,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="addArticle">
+                            <form id="addArticle" action="${springMacroRequestContext.contextPath}/admin/article/addArticle" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="标题" name="title">
                                 </div>
@@ -106,13 +104,17 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <select name="animalCategoryId" class="form-control">
-                                                <option>水族</option>
+                                            <select id="animalCategoryId" name="animalCategoryId" class="form-control">
+                                                <#list animalCategoryList as animalCategory>
+                                                    <option value="${animalCategory.animalCategoryId}">${animalCategory.categoryName}</option>
+                                                </#list>
                                             </select>
                                         </div>
                                         <div class="col">
                                             <select name="articleCategoryId" class="form-control">
-                                                <option>百科</option>
+                                                <#list articleCategoryList as articleCategory>
+                                                    <option value="${articleCategory.articleCategoryId}">${articleCategory.categoryName}</option>
+                                                </#list>
                                             </select>
                                         </div>
                                     </div>
@@ -153,10 +155,8 @@
 
         // 添加按钮的事件
         $(".add-article").click(function () {
-            // alert(ue.getAllHtml());
-            // console.log($("#addArticle").serialize());
-            let data = new FormData($("#addArticle")[0]);
-            console.log(data)
+            // 提交表单
+            $("#addArticle").submit();
         });
     });
 </script>

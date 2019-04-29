@@ -23,6 +23,11 @@ public class AnimalCategoryServiceImpl implements AnimalCategoryService {
     private ArticleRepository articleRepository;
 
     @Override
+    public List<AnimalCategory> findAll() {
+        return animalCategoryRepository.findAll();
+    }
+
+    @Override
     public Page<AnimalCategory> findAll(Pageable pageable) {
         return animalCategoryRepository.findAll(pageable);
     }

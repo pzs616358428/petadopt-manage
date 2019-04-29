@@ -19,4 +19,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll(pageable);
     }
 
+    @Override
+    public Article save(Article article) {
+        return articleRepository.save(article);
+    }
+
 }

@@ -4,7 +4,15 @@ import com.ysy.petadopt.entity.ArticleCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ArticleCategoryService {
+
+    /**
+     * 查询所有文章类别
+     * @return
+     */
+    List<ArticleCategory> findAll();
 
     /**
      * 根据分页参数查询所有文章分类

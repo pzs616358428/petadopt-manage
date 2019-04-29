@@ -8,11 +8,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArticleCategoryServiceImpl implements ArticleCategoryService {
 
     @Autowired
     private ArticleCategoryRepository articleCategoryRepository;
+
+    @Override
+    public List<ArticleCategory> findAll() {
+        return articleCategoryRepository.findAll();
+    }
 
     @Override
     public Page<ArticleCategory> findAll(Pageable pageable) {

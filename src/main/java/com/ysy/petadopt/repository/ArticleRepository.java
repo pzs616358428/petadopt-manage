@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
     @Transactional

@@ -9,6 +9,12 @@ import java.util.List;
 public interface AnimalCategoryService {
 
     /**
+     * 查询所有动物分类
+     * @return
+     */
+    List<AnimalCategory> findAll();
+
+    /**
      * 根据分页参数查询动物类别
      * @param pageable
      * @return 类别数据
