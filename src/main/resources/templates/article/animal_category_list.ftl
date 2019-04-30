@@ -241,7 +241,6 @@
         // 修改模态框的保存按钮
         $('.update-category').click(function () {
             let animalCategoryId = $('#update-animal-category-id').val();
-            console.log(animalCategoryId)
             let categoryName = $('#update-category-name').val();
             if (categoryName) {
                 $.ajax({

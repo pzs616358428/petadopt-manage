@@ -38,6 +38,11 @@ public class ArticleRepositoryTest {
     }
 
     @Test
+    public void deleteByArticleCategoryIdTest() {
+        articleRepository.deleteByArticleCategoryId(7);
+    }
+
+    @Test
     public void saveTest() {
         Article article = new Article();
         article.setTitle("巨型淡水虾");

@@ -57,14 +57,6 @@ public class AdminArticleController {
     @PostMapping("addArticle")
     public String addArticle(String title, String description, Integer watchCount, Integer commentCount, Integer animalCategoryId,
                              Integer articleCategoryId, MultipartFile mainImage, String content, HttpSession httpSession) throws IOException {
-        /*System.out.println(title);
-        System.out.println(description);
-        System.out.println(watchCount);
-        System.out.println(commentCount);
-        System.out.println(animalCategoryId);
-        System.out.println(articleCategoryId);
-        System.out.println(mainImage);
-        System.out.println(content);*/
         // 上传主图到七牛云
         Response response = qiniuUploadFileService.uploadFile(mainImage.getInputStream());
         PutRetDTO putRetDTO = response.jsonToObject(PutRetDTO.class);

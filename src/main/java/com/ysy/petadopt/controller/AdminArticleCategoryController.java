@@ -47,4 +47,19 @@ public class AdminArticleCategoryController {
         }
     }
 
+    @PostMapping("updateArticleCategory")
+    @ResponseBody
+    public ResultVO updateArticleCategory(Integer articleCategoryId, String categoryName) {
+        ArticleCategory articleCategory = articleCategoryService.findByCategoryName(categoryName);
+        if (articleCategory == null) {
+            articleCategory = new ArticleCategory();
+            articleCategory.setArticleCategoryId(articleCategoryId);
+            articleCategory.setCategoryName(categoryName);
+            articleCategory = articleCategoryService.save(articleCategory);
+            return ResultVOUtils.success(articleCategory);
+        } else {
+            return ResultVOUtils.error(1, "类别已存在");
+        }
+    }
+
 }
