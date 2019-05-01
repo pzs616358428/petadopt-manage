@@ -62,7 +62,9 @@
                     <td>${article.createTime}</td>
                     <td>${article.updateTime}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" onclick="alert('功能未开放')">修改</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                data-target="#update-article-model" data-article-id="${article.articleId}">修改
+                        </button>
                         <button type="button" class="btn btn-danger btn-sm delete" data-article-category-id="1"
                                 data-article-id="${article.articleId}">删除
                         </button>
@@ -107,8 +109,9 @@
                             <#if num == page.getNumber() + 1>
                             <li class="page-item active"><a class="page-link" href="javascript:;">${num}</a></li>
                             <#else>
-                            <li class="page-item"><a class="page-link"
-                                                     href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${num}">${num}</a>
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${num}">${num}</a>
                             </li>
                             </#if>
                         </#list>
@@ -193,6 +196,69 @@
                     </div>
                 </div>
             </div>
+
+        <#-- 修改模态框 -->
+            <div class="modal fade" id="update-article-model" tabindex="-1" role="dialog"
+                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">添加文章</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="updateArticle"
+                                  action="${springMacroRequestContext.contextPath}/admin/article/updateArticle"
+                                  method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="update-article-id" name="articleId">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="标题" id="update-title" name="title">
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="描述" class="form-control" id="update-description" name="description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="围观数" id="update-watch-count" name="watchCount">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="评论数" id="update-comment-count" name="commentCount">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <select id="update-animal-category-id" name="animalCategoryId" class="form-control">
+                                                <#list animalCategoryList as animalCategory>
+                                                    <option value="${animalCategory.animalCategoryId}">${animalCategory.categoryName}</option>
+                                                </#list>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select id="update-article-category-id" name="articleCategoryId" class="form-control">
+                                                <#list articleCategoryList as articleCategory>
+                                                    <option value="${articleCategory.articleCategoryId}">${articleCategory.categoryName}</option>
+                                                </#list>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="custom-file mb-3">
+                                    <input type="file" class="custom-file-input" id="update-main-image" name="mainImage">
+                                    <label class="custom-file-label" for="customFile">文章主图</label>
+                                </div>
+                                <script id="update-container" name="content" type="text/plain"></script>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary update-article">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -208,8 +274,12 @@
             $('.check-item').prop('checked', $(this).prop('checked'));
         });
 
-        // 初始化富文本编辑器
-        let ue = UE.getEditor('container', {
+        // 初始化添加模态框富文本编辑器
+        let addue = UE.getEditor('container', {
+            initialFrameHeight: 200
+        });
+
+        let updateue = UE.getEditor('update-container', {
             initialFrameHeight: 200
         });
 
@@ -226,6 +296,56 @@
                 let articleId = $(this).data('articleId');
                 location.href = "${springMacroRequestContext.contextPath}/admin/article/deleteArticle?articleId=" + articleId;
             }
+        });
+
+        // 绑定修改模态框打开之前的事件
+        $('#update-article-model').on('show.bs.modal', function (e) {
+            // 从后台获取数据显示到修改模态框上
+            $.ajax({
+                type: 'get',
+                url: 'getArticle?articleId=' + $(e.relatedTarget).data('articleId'),
+                success: function (data) {
+                    if (data.status == 0) {
+                        const article = data.data;
+                        // 将数据显示到修改表单上
+                        $('#update-article-id').val(article.articleId);
+                        $('#update-title').val(article.title);
+                        $('#update-description').val(article.description);
+                        $('#update-watch-count').val(article.watchCount);
+                        $('#update-comment-count').val(article.commentCount);
+                        // 设置宠物类别select
+                        const animalCategoryOptions = $('#update-animal-category-id option');
+                        for (let i = 0; i < animalCategoryOptions.length; i++) {
+                            if (animalCategoryOptions[i].value == article.animalCategory.animalCategoryId) {
+                                $('#update-animal-category-id').get(0).selectedIndex = i;
+                                break;
+                            }
+                        }
+                        // 设置文章类别select
+                        const articleCategoryOptions = $('#update-article-category-id option');
+                        for (let i = 0; i < articleCategoryOptions.length; i++) {
+                            if (articleCategoryOptions[i].value == article.articleCategory.articleCategoryId) {
+                                $('#update-article-category-id').get(0).selectedIndex = i;
+                                break;
+                            }
+                        }
+
+                        // 文章主图未处理
+                        // 设置文章内容富文本编辑器
+                        updateue.setContent(article.content);
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function () {
+                    alert('获取数据失败，请刷新');
+                }
+            });
+        })
+
+        // 修改模态框的保存按钮
+        $('.update-article').click(function () {
+            $('#updateArticle').submit();
         });
     });
 </script>

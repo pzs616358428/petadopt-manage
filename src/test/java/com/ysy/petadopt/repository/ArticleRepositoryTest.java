@@ -45,6 +45,7 @@ public class ArticleRepositoryTest {
     @Test
     public void saveTest() {
         Article article = new Article();
+        article.setArticleId(22);
         article.setTitle("巨型淡水虾");
         article.setMainImage("主图地址");
         article.setDescription("这是描述");
@@ -64,7 +65,7 @@ public class ArticleRepositoryTest {
         article.setAnimalCategory(animalCategory);
 
         ArticleCategory articleCategory = new ArticleCategory();
-        articleCategory.setArticleCategoryId(3);
+        articleCategory.setArticleCategoryId(8);
         article.setArticleCategory(articleCategory);
 
         articleRepository.save(article);

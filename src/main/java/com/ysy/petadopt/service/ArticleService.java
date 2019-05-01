@@ -14,6 +14,13 @@ public interface ArticleService {
     Page<Article> findAll(Pageable pageable);
 
     /**
+     * 根据id查询文章
+     * @param articleId
+     * @return 查询出的数据
+     */
+    Article findOne(Integer articleId);
+
+    /**
      * 添加文章
      * @param article
      * @return 添加后的数据

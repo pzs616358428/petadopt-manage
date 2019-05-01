@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -17,6 +19,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Page<Article> findAll(Pageable pageable) {
         return articleRepository.findAll(pageable);
+    }
+
+    @Override
+    public Article findOne(Integer articleId) {
+        Optional<Article> optional = articleRepository.findById(articleId);
+        return optional.get();
     }
 
     @Override
