@@ -87,7 +87,9 @@
 
                         <#if page.hasPrevious()>
                         <li class="page-item">
-                            <a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${page.previousPageable().getPageNumber() + 1}" aria-label="Previous">
+                            <a class="page-link"
+                               href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${page.previousPageable().getPageNumber() + 1}"
+                               aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
@@ -102,16 +104,20 @@
                         </#if>
 
                         <#list navigationNums as num>
-                        <#if num == page.getNumber() + 1>
+                            <#if num == page.getNumber() + 1>
                             <li class="page-item active"><a class="page-link" href="javascript:;">${num}</a></li>
-                        <#else>
-                            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${num}">${num}</a></li>
-                        </#if>
+                            <#else>
+                            <li class="page-item"><a class="page-link"
+                                                     href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${num}">${num}</a>
+                            </li>
+                            </#if>
                         </#list>
 
                         <#if page.hasNext()>
                         <li class="page-item">
-                            <a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${page.nextPageable().getPageNumber() + 1}" aria-label="Next">
+                            <a class="page-link"
+                               href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${page.nextPageable().getPageNumber() + 1}"
+                               aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -215,9 +221,11 @@
 
         // 删除按钮的点击事件
         $('.delete').click(function () {
-            // 获取要删除的文章id
-            let articleId = $(this).data('articleId');
-            location.href = "${springMacroRequestContext.contextPath}/admin/article/deleteArticle?articleId=" + articleId;
+            if (confirm('确定删除吗？')) {
+                // 获取要删除的文章id
+                let articleId = $(this).data('articleId');
+                location.href = "${springMacroRequestContext.contextPath}/admin/article/deleteArticle?articleId=" + articleId;
+            }
         });
     });
 </script>
