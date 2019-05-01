@@ -10,8 +10,10 @@ import com.ysy.petadopt.service.AnimalCategoryService;
 import com.ysy.petadopt.service.ArticleCategoryService;
 import com.ysy.petadopt.service.ArticleService;
 import com.ysy.petadopt.service.QiniuUploadFileService;
+import com.ysy.petadopt.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -48,7 +50,9 @@ public class AdminArticleController {
     @GetMapping("articleList")
     public String articleList(ModelMap modelMap, @RequestParam(defaultValue = "1") Integer pageNum) {
         Pageable pageable = PageRequest.of(--pageNum, 8);
-        modelMap.put("page", articleService.findAll(pageable));
+        Page<Article> page = articleService.findAll(pageable);
+        modelMap.put("page", page);
+        modelMap.put("navigationNums", PageUtils.getNavigationNums(page));
         modelMap.put("animalCategoryList", animalCategoryService.findAll());
         modelMap.put("articleCategoryList", articleCategoryService.findAll());
         return "article/article_list";
@@ -100,6 +104,13 @@ public class AdminArticleController {
         // 保存文章
         articleService.save(article);
 
+        return "redirect:articleList";
+    }
+
+    @GetMapping("deleteArticle")
+    public String deleteArticle(Integer articleId) {
+        // 调用业务层删除
+        articleService.deleteById(articleId);
         return "redirect:articleList";
     }
 

@@ -63,7 +63,8 @@
                     <td>${article.updateTime}</td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" onclick="alert('功能未开放')">修改</button>
-                        <button type="button" class="btn btn-danger btn-sm delete" data-article-category-id="1">删除
+                        <button type="button" class="btn btn-danger btn-sm delete" data-article-category-id="1"
+                                data-article-id="${article.articleId}">删除
                         </button>
                     </td>
                 </tr>
@@ -71,10 +72,61 @@
                 </tbody>
             </table>
 
-        <#-- 添加按钮,开启模态框 -->
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#add-article-model">
-                添加
-            </button>
+            <div class="container-fluid p-0 d-flex justify-content-between">
+                <div class="button-wrapper">
+                <#-- 添加按钮,开启模态框 -->
+                    <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
+                            data-target="#add-article-model">
+                        添加
+                    </button>
+                </div>
+
+            <#-- 分页按钮 -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+
+                        <#if page.hasPrevious()>
+                        <li class="page-item">
+                            <a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${page.previousPageable().getPageNumber() + 1}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <#else>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:;" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        </#if>
+
+                        <#list navigationNums as num>
+                        <#if num == page.getNumber() + 1>
+                            <li class="page-item active"><a class="page-link" href="javascript:;">${num}</a></li>
+                        <#else>
+                            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${num}">${num}</a></li>
+                        </#if>
+                        </#list>
+
+                        <#if page.hasNext()>
+                        <li class="page-item">
+                            <a class="page-link" href="${springMacroRequestContext.contextPath}/admin/article/articleList?pageNum=${page.nextPageable().getPageNumber() + 1}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <#else>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:;" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        </#if>
+                    </ul>
+                </nav>
+            </div>
 
         <#-- 添加类别的模态框 -->
             <div class="modal fade" id="add-article-model" tabindex="-1" role="dialog"
@@ -88,7 +140,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="addArticle" action="${springMacroRequestContext.contextPath}/admin/article/addArticle" method="post" enctype="multipart/form-data">
+                            <form id="addArticle"
+                                  action="${springMacroRequestContext.contextPath}/admin/article/addArticle"
+                                  method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="标题" name="title">
                                 </div>
@@ -153,10 +207,17 @@
             initialFrameHeight: 200
         });
 
-        // 添加按钮的事件
-        $(".add-article").click(function () {
+        // 添加模态框保存按钮的事件
+        $('.add-article').click(function () {
             // 提交表单
             $("#addArticle").submit();
+        });
+
+        // 删除按钮的点击事件
+        $('.delete').click(function () {
+            // 获取要删除的文章id
+            let articleId = $(this).data('articleId');
+            location.href = "${springMacroRequestContext.contextPath}/admin/article/deleteArticle?articleId=" + articleId;
         });
     });
 </script>

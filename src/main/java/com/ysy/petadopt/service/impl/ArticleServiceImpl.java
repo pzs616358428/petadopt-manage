@@ -24,4 +24,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
+    @Override
+    public void deleteById(Integer articleId) {
+        articleRepository.deleteById(articleId);
+    }
+
 }

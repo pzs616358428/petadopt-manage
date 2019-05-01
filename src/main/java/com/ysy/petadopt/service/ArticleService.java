@@ -20,4 +20,6 @@ public interface ArticleService {
      */
     Article save(Article article);
 
+    void deleteById(Integer articleId);
+
 }
