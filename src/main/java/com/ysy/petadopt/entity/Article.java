@@ -1,6 +1,7 @@
 package com.ysy.petadopt.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;

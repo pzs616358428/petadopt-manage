@@ -34,7 +34,7 @@
                     <th scope="col">动物类别</th>
                     <th scope="col">文章类别</th>
                     <th scope="col">标题</th>
-                    <th scope="col">描述</th>
+                    <th scope="col" style="width: 320px;">描述</th>
                     <th scope="col">围观数</th>
                     <th scope="col">评论数</th>
                     <th scope="col">创建时间</th>
@@ -56,7 +56,7 @@
                     <td>${article.animalCategory.categoryName}</td>
                     <td>${article.articleCategory.categoryName}</td>
                     <td>${article.title}</td>
-                    <td>${article.description}</td>
+                    <td style="display: block;width: 320px;height: 90px;overflow: hidden;" title="${article.description}">${article.description}</td>
                     <td>${article.watchCount}</td>
                     <td>${article.commentCount}</td>
                     <td>${article.createTime}</td>
@@ -216,28 +216,34 @@
                                     <input type="hidden" class="form-control" id="update-article-id" name="articleId">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="标题" id="update-title" name="title">
+                                    <input type="text" class="form-control" placeholder="标题" id="update-title"
+                                           name="title">
                                 </div>
                                 <div class="form-group">
-                                    <textarea placeholder="描述" class="form-control" id="update-description" name="description"></textarea>
+                                    <textarea placeholder="描述" class="form-control" id="update-description"
+                                              name="description"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="围观数" id="update-watch-count" name="watchCount">
+                                    <input type="number" class="form-control" placeholder="围观数" id="update-watch-count"
+                                           name="watchCount">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="评论数" id="update-comment-count" name="commentCount">
+                                    <input type="number" class="form-control" placeholder="评论数"
+                                           id="update-comment-count" name="commentCount">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <select id="update-animal-category-id" name="animalCategoryId" class="form-control">
+                                            <select id="update-animal-category-id" name="animalCategoryId"
+                                                    class="form-control">
                                                 <#list animalCategoryList as animalCategory>
                                                     <option value="${animalCategory.animalCategoryId}">${animalCategory.categoryName}</option>
                                                 </#list>
                                             </select>
                                         </div>
                                         <div class="col">
-                                            <select id="update-article-category-id" name="articleCategoryId" class="form-control">
+                                            <select id="update-article-category-id" name="articleCategoryId"
+                                                    class="form-control">
                                                 <#list articleCategoryList as articleCategory>
                                                     <option value="${articleCategory.articleCategoryId}">${articleCategory.categoryName}</option>
                                                 </#list>
@@ -246,7 +252,8 @@
                                     </div>
                                 </div>
                                 <div class="custom-file mb-3">
-                                    <input type="file" class="custom-file-input" id="update-main-image" name="mainImage">
+                                    <input type="file" class="custom-file-input" id="update-main-image"
+                                           name="mainImage">
                                     <label class="custom-file-label" for="customFile">文章主图</label>
                                 </div>
                                 <script id="update-container" name="content" type="text/plain"></script>

@@ -164,6 +164,9 @@ public class AdminArticleController {
         // 设置文章内容
         article.setContent(content);
 
+        // 设置修改时间
+        article.setUpdateTime(new Date());
+
         // 设置用户
         User user = (User) httpSession.getAttribute("user");
         article.setUser(user);
