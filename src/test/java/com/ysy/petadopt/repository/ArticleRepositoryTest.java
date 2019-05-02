@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -70,6 +71,23 @@ public class ArticleRepositoryTest {
 
         articleRepository.save(article);
 
+    }
+
+    @Test
+    public void findAllByExampleTest() {
+        Article article = new Article();
+
+        /*AnimalCategory animalCategory = new AnimalCategory();
+        animalCategory.setAnimalCategoryId(31);
+
+        ArticleCategory articleCategory = new ArticleCategory();
+        articleCategory.setArticleCategoryId(8);
+
+        article.setAnimalCategory(animalCategory);
+        article.setArticleCategory(articleCategory);*/
+
+        Example example = Example.of(article);
+        System.out.println(articleRepository.findAll(example).size());
     }
 
 }

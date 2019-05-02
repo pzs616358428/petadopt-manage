@@ -1,6 +1,7 @@
 package com.ysy.petadopt.service;
 
 import com.ysy.petadopt.entity.Article;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +20,8 @@ public interface ArticleService {
      * @return 查询出的数据
      */
     Article findOne(Integer articleId);
+
+    Page<Article> dynamicFindAll(Example<Article> example, Pageable pageable);
 
     /**
      * 添加文章
