@@ -63,9 +63,15 @@ public class MemberArticleController {
         MemberArticleVO memberArticleVO = new MemberArticleVO();
         memberArticleVO.setList(page.getContent());
 
-        memberArticleVO.setPage(PageVO.of(page.getNumber() + 1, page.getTotalPages(), page.isFirst(), page.isLast(), page.hasNext(), page.hasPrevious()));
+        memberArticleVO.setPage(PageVO.of(page.getNumber() + 1, page.getTotalPages(),page.getTotalElements(), page.isFirst(), page.isLast(), page.hasNext(), page.hasPrevious()));
 
         return ResultVOUtils.success(memberArticleVO);
+    }
+
+    @GetMapping("articleDetail")
+    public ResultVO articleDetail(Integer articleId) {
+        Article article = articleService.findOne(articleId);
+        return ResultVOUtils.success(article);
     }
 
 }

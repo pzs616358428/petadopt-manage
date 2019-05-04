@@ -11,6 +11,9 @@ public class PageVO {
     /* 总页数 */
     private Integer totalPages;
 
+    /* 数据总条数 */
+    private Long totalElements;
+
     /* 是否是第一页 */
     private boolean isFirst;
 
@@ -23,10 +26,11 @@ public class PageVO {
     /* 是否还有上一页 */
     private boolean hasPrevious;
 
-    public static PageVO of (Integer number, Integer totalPages, boolean isFirst, boolean isLast, boolean hasNext, boolean hasPrevious) {
+    public static PageVO of (Integer number, Integer totalPages,Long totalElements, boolean isFirst, boolean isLast, boolean hasNext, boolean hasPrevious) {
         PageVO pageVO = new PageVO();
         pageVO.number = number;
         pageVO.totalPages = totalPages;
+        pageVO.totalElements = totalElements;
         pageVO.isFirst = isFirst;
         pageVO.isLast = isLast;
         pageVO.hasNext = hasNext;

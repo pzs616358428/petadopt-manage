@@ -14,6 +14,8 @@ spring:
       cache: false
   jpa:
     show-sql: true
+  jackson:
+    date-format: yy-MM-dd HH:mm
 qiniu:
   # 七牛密钥
   AccessKey: ZUrxyQqwJSRycRBHJmvVcp-wmPE6uXMy22re-r7P
