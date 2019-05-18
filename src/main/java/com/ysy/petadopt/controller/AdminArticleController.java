@@ -47,7 +47,10 @@ public class AdminArticleController {
     private String prefix;
 
     @GetMapping("articleList")
-    public String articleList(ModelMap modelMap, @RequestParam(defaultValue = "1") Integer pageNum) {
+    public String articleList(ModelMap modelMap, @RequestParam(defaultValue = "1") Integer pageNum, String animalCategoryName,
+                              String articleCategoryName) {
+        System.out.println(animalCategoryName);
+        System.out.println(articleCategoryName);
         Pageable pageable = PageRequest.of(--pageNum, 8);
         Page<Article> page = articleService.findAll(pageable);
         modelMap.put("page", page);

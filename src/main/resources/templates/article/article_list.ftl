@@ -56,7 +56,8 @@
                     <td>${article.animalCategory.categoryName}</td>
                     <td>${article.articleCategory.categoryName}</td>
                     <td>${article.title}</td>
-                    <td style="display: block;width: 320px;height: 90px;overflow: hidden;" title="${article.description}">${article.description}</td>
+                    <td style="display: block;width: 320px;height: 90px;overflow: hidden;"
+                        title="${article.description}">${article.description}</td>
                     <td>${article.watchCount}</td>
                     <td>${article.commentCount}</td>
                     <td>${article.createTime}</td>
@@ -167,7 +168,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <select id="animalCategoryId" name="animalCategoryId" class="form-control">
+                                            <select name="animalCategoryId" class="form-control">
                                                 <#list animalCategoryList as animalCategory>
                                                     <option value="${animalCategory.animalCategoryId}">${animalCategory.categoryName}</option>
                                                 </#list>
@@ -337,7 +338,7 @@
                             }
                         }
 
-                        // 文章主图未处理
+                        // TODO文章主图未处理
                         // 设置文章内容富文本编辑器
                         updateue.setContent(article.content);
                     } else {
@@ -354,6 +355,7 @@
         $('.update-article').click(function () {
             $('#updateArticle').submit();
         });
+
     });
 </script>
 </body>
