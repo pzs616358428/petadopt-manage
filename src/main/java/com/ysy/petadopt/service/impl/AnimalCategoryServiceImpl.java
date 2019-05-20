@@ -40,6 +40,7 @@ public class AnimalCategoryServiceImpl implements AnimalCategoryService {
     @Transactional
     @Override
     public void deleteById(Integer animalCategoryId) {
+        // TODO 删除宠物类别之前先删除宠物类别下所有领养
         // 先根据宠物类别id删除文章
         articleRepository.deleteByAnimalCategoryId(animalCategoryId);
         // 再删除宠物类别
