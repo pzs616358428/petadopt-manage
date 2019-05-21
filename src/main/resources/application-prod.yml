@@ -10,6 +10,7 @@ spring:
     password: ysypzs1234
   jackson:
     date-format: yy-MM-dd HH:mm
+    time-zone: Asia/Shanghai
 qiniu:
   # 七牛密钥
   AccessKey: ZUrxyQqwJSRycRBHJmvVcp-wmPE6uXMy22re-r7P
