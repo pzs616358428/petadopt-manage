@@ -8,6 +8,7 @@ import com.ysy.petadopt.utils.ResultVOUtils;
 import com.ysy.petadopt.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +41,9 @@ public class MemberLoginController {
             // 修改最后登录时间
             member.setLastLoginTime(new Date());
             member = memberService.save(member);
+
+            member.setMemberInfo(memberInfoService.findOne(member.getMemberId()));
+
             // 将信息存储到session中
             httpSession.setAttribute("member", member);
             return ResultVOUtils.success(member);
@@ -83,6 +87,16 @@ public class MemberLoginController {
             return ResultVOUtils.success(member);
         } else {
             return ResultVOUtils.error(1, "用户名已存在");
+        }
+    }
+
+    @GetMapping("getMemberInfo")
+    public ResultVO getMemberInfo(HttpSession httpSession) {
+        Member member = (Member) httpSession.getAttribute("member");
+        if (member != null) {
+            return ResultVOUtils.success(member);
+        } else {
+            return ResultVOUtils.error(1, "未登录");
         }
     }
 

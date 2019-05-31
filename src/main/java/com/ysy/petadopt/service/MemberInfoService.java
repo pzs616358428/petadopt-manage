@@ -6,4 +6,6 @@ public interface MemberInfoService {
 
     MemberInfo save(MemberInfo memberInfo);
 
+    MemberInfo findOne(Integer memberId);
+
 }

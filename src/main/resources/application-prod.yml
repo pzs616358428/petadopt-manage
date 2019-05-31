@@ -9,7 +9,7 @@ spring:
     username: root
     password: ysypzs1234
   jackson:
-    date-format: yy-MM-dd HH:mm
+    date-format: yyyy-MM-dd HH:mm
     time-zone: Asia/Shanghai
 qiniu:
   # 七牛密钥

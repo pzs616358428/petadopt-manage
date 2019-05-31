@@ -4,6 +4,7 @@ import com.ysy.petadopt.entity.MemberInfo;
 import com.ysy.petadopt.repository.MemberInfoRepository;
 import com.ysy.petadopt.service.MemberInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +16,12 @@ public class MemberInfoServiceImpl implements MemberInfoService {
     @Override
     public MemberInfo save(MemberInfo memberInfo) {
         return memberInfoRepository.save(memberInfo);
+    }
+
+    @Override
+    public MemberInfo findOne(Integer memberId) {
+        MemberInfo memberInfo = new MemberInfo();
+        memberInfo.setMemberId(memberId);
+        return memberInfoRepository.findOne(Example.of(memberInfo)).get();
     }
 }
