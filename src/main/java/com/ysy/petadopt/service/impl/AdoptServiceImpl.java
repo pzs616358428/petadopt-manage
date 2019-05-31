@@ -25,4 +25,19 @@ public class AdoptServiceImpl implements AdoptService {
         return adoptRepository.findById(adoptId).get();
     }
 
+    @Override
+    public Adopt save(Adopt adopt) {
+        return adoptRepository.save(adopt);
+    }
+
+    @Override
+    public Page<Adopt> findAll(Pageable pageable) {
+        return adoptRepository.findAll(pageable);
+    }
+
+    @Override
+    public void deleteById(Integer adoptId) {
+        adoptRepository.deleteById(adoptId);
+    }
+
 }

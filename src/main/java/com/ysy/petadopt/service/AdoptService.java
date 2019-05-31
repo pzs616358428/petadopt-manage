@@ -11,4 +11,10 @@ public interface AdoptService {
 
     Adopt findAdoptById(Integer adoptId);
 
+    Adopt save(Adopt adopt);
+
+    Page<Adopt> findAll(Pageable pageable);
+
+    void deleteById(Integer adoptId);
+
 }

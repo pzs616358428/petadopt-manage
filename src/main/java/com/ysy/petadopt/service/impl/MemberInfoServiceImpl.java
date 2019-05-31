@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberInfoServiceImpl implements MemberInfoService {
 
@@ -23,5 +25,10 @@ public class MemberInfoServiceImpl implements MemberInfoService {
         MemberInfo memberInfo = new MemberInfo();
         memberInfo.setMemberId(memberId);
         return memberInfoRepository.findOne(Example.of(memberInfo)).get();
+    }
+
+    @Override
+    public List<MemberInfo> findAll() {
+        return memberInfoRepository.findAll();
     }
 }

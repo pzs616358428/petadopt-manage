@@ -29,6 +29,9 @@
             <li class="list-group-item">
                 <a href="${springMacroRequestContext.contextPath}/admin/adopt/regionList" class="btn btn-link">地区管理</a>
             </li>
+            <li class="list-group-item">
+                <a href="${springMacroRequestContext.contextPath}/admin/adopt/adoptList" class="btn btn-link">领养管理</a>
+            </li>
         </ul>
     </div>
     <div class="card">
