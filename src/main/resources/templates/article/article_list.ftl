@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>百科管理</title>
+    <title>文章管理</title>
     <link rel="stylesheet" href="${springMacroRequestContext.contextPath}/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="${springMacroRequestContext.contextPath}/css/common.css">
     <style>

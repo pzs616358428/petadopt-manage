@@ -58,4 +58,11 @@ public class UeditorJspController {
         return UeditorVOUtils.success(prefix + "/" + putRetDTO.getKey(), upfile.getOriginalFilename(), upfile.getOriginalFilename());
     }
 
+    @PostMapping("upload")
+    @ResponseBody
+    public String upload(MultipartFile upfile) throws IOException {
+        Response response = qiniuUploadFileService.uploadFile(upfile.getInputStream());
+        PutRetDTO putRetDTO = response.jsonToObject(PutRetDTO.class);
+        return prefix + "/" + putRetDTO.getKey();
+    }
 }
