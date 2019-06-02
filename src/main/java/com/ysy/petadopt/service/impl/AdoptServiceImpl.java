@@ -2,6 +2,7 @@ package com.ysy.petadopt.service.impl;
 
 import com.ysy.petadopt.entity.Adopt;
 import com.ysy.petadopt.repository.AdoptRepository;
+import com.ysy.petadopt.repository.ApplyRepository;
 import com.ysy.petadopt.service.AdoptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,6 +15,9 @@ public class AdoptServiceImpl implements AdoptService {
 
     @Autowired
     private AdoptRepository adoptRepository;
+
+    @Autowired
+    private ApplyRepository applyRepository;
 
     @Override
     public Page<Adopt> findAll(Example<Adopt> example, Pageable pageable) {
@@ -37,6 +41,7 @@ public class AdoptServiceImpl implements AdoptService {
 
     @Override
     public void deleteById(Integer adoptId) {
+        applyRepository.deleteByAdoptId(adoptId);
         adoptRepository.deleteById(adoptId);
     }
 

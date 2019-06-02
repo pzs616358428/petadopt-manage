@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,5 +29,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member save(Member member) {
         return memberRepository.save(member);
+    }
+
+    @Override
+    public List<Member> findAll() {
+        return memberRepository.findAll();
     }
 }

@@ -132,4 +132,48 @@ public class MemberAdoptController {
         return ResultVOUtils.success(adopt);
     }
 
+    @GetMapping("adoptListByMember")
+    public ResultVO adoptListByMember(@RequestParam(defaultValue = "1") Integer pageNum, HttpSession httpSession) {
+        // 构建查询参数
+        Adopt adopt = new Adopt();
+
+        Member member = (Member) httpSession.getAttribute("member");
+        if (member == null) {
+            return ResultVOUtils.error(1, "用户未登录");
+        }
+        adopt.setMemberId(member.getMemberId());
+
+        Example<Adopt> example = Example.of(adopt);
+        // 构建分页对象
+        Pageable pageable = PageRequest.of(--pageNum, 6);
+
+        Page<Adopt> page = adoptService.findAll(example, pageable);
+
+        // 弥补一对一映射不生效问题
+        List<MemberInfo> memberInfoList = memberInfoService.findAll();
+        Map<Integer, MemberInfo> map = new HashMap<>();
+        for (MemberInfo memberInfo : memberInfoList) {
+            map.put(memberInfo.getMemberId(), memberInfo);
+        }
+
+        for (Adopt adopt1 : page.getContent()) {
+            adopt1.getMember().setMemberInfo(map.get(adopt1.getMember().getMemberId()));
+        }
+
+        // 构建vo对象
+        MemberAdoptVO memberAdoptVO = new MemberAdoptVO();
+        memberAdoptVO.setAdoptList(page.getContent());
+
+        memberAdoptVO.setPage(PageVO.of(page.getNumber() + 1, page.getTotalPages(), page.getTotalElements(),
+                page.isFirst(), page.isLast(), page.hasNext(), page.hasPrevious()));
+
+        return ResultVOUtils.success(memberAdoptVO);
+    }
+
+    @GetMapping("deleteAdopt")
+    public ResultVO deleteAdopt(Integer adoptId) {
+        adoptService.deleteById(adoptId);
+        return ResultVOUtils.success();
+    }
+
 }

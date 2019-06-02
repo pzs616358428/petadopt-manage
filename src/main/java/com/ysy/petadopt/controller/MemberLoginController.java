@@ -94,10 +94,33 @@ public class MemberLoginController {
     public ResultVO getMemberInfo(HttpSession httpSession) {
         Member member = (Member) httpSession.getAttribute("member");
         if (member != null) {
+            Member param =  new Member();
+            param.setMemberId(member.getMemberId());
+            Example<Member> example = Example.of(param);
+            member = memberService.findOneByParm(example);
+            member.setMemberInfo(memberInfoService.findOne(member.getMemberId()));
             return ResultVOUtils.success(member);
         } else {
             return ResultVOUtils.error(1, "未登录");
         }
+    }
+
+    @PostMapping("changeInfo")
+    public ResultVO changeInfo(HttpSession httpSession, String nickname, String email, String phone) {
+        Member member = (Member) httpSession.getAttribute("member");
+        if (member == null) {
+            return ResultVOUtils.error(1, "未登录");
+        }
+
+        MemberInfo memberInfo = memberInfoService.findOne(member.getMemberId());
+
+        memberInfo.setNickname(nickname);
+        memberInfo.setEmail(email);
+        memberInfo.setPhone(phone);
+
+        memberInfoService.save(memberInfo);
+
+        return ResultVOUtils.success();
     }
 
 }
